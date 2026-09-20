@@ -17,7 +17,19 @@
 
 早期项目文稿使用 **Alex-Fin** 名称，描述因子 DAG、检索、公式/代码生成及 Bandit 研究设计。本项目展示名称为 **BenjaminAgent**，目录与仓库脉络沿用 `Fintelligence`。
 
-历史文稿用于理解设计。其性能描述需要与当前代码、模型选择、标签周期、成本定义、日志及数据版本对应，才能成为当前结果声明。本教程将设计映射到具体源码，并在[状态清单](status.md)中记录实现缺口。文稿的私人元数据和全文材料保留在本包之外。
+通过[完整文稿](https://github.com/Soros2040/julius-future/blob/main/works/benjamin-agent/manuscript.md)或 [PDF](https://github.com/Soros2040/julius-future/blob/main/works/benjamin-agent/manuscript.pdf)阅读研究叙述、公式、结果表和附录。[作品入口](https://github.com/Soros2040/julius-future/tree/main/works/benjamin-agent/)保存文稿及发布背景。[原图指南](../assets/manuscript/README.md)与[哈希清单](../assets/manuscript/provenance.json)记录本仓库使用的三张方法图。
+
+阅读时区分三类证据：文稿段落说明作者提出或报告了什么，源码检查说明特定实现表达了什么，保存的运行证据包说明在特定环境与配置下实际执行了什么。教程联系前两类证据；历史性能数值保留文稿归属，数据、日志、成本与配置完整对应后，才能形成当前结果声明。
+
+| 待对照问题 | 文稿证据 | 当前源码阅读 |
+|---|---|---|
+| 调度状态 | 截至 Sharpe 的八维状态 | 增加 Calmar 的九个字段，权重也有变化 |
+| 标签与组合协议 | 正文 §4.1 与附录采用不同周期和选股规则 | 核查 Qlib 处理器、标签、top-k/drop、划分及成本 |
+| 年化与回撤 | 附录 ARR 为复合年化，MDD 公式为正损失幅度 | 管道采用 `252 × mean(return)` 与负回撤 |
+| 结果归属 | 主表 3 与 §4.2 正文对最高结果的归属不同 | 保留表格归属，并记录尚待解决的正文差异 |
+| 知识持久化 | 胖节点与集中研究记忆 | 序列化的 IC 系列节点字段及独立模型实验日志 |
+
+[案例一](case-01-task-to-backtest.md)推导评价口径并阅读结果表，[案例二](case-02-factor-lifecycle.md)讲解检索、准入、状态构造和后验更新。[状态清单](status.md)记录实现缺口。来源复核应保留准确章节/表格引用，并说明每个数值所属配置。
 
 ## 学习组织方式
 

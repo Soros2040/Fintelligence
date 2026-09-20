@@ -1,0 +1,42 @@
+{
+  "source_document_sha256": "92e17be4508ecbbd9ab03dc388d859706d714954532ba46bd8764ac1aa8003fd",
+  "source_manuscript_url": "https://github.com/Soros2040/julius-future/blob/main/works/benjamin-agent/manuscript.md",
+  "source_pdf_url": "https://github.com/Soros2040/julius-future/blob/main/works/benjamin-agent/manuscript.pdf",
+  "extraction": "Original ZIP member bytes; no cropping, redrawing, relabeling, or recompression.",
+  "context": "Historical Alex-Fin research-design figures; current public project name BenjaminAgent. Historical eight-dimensional state differs from current nine-field scheduler.",
+  "assets": [
+    {
+      "file": "figure-01-technical-roadmap.jpeg",
+      "source_zip_entry": "word/media/image5.jpeg",
+      "figure_number": 1,
+      "chapter": "Abstract; technical roadmap",
+      "original_caption": "技术路线图",
+      "sha256": "84da99e948278a41a11c250d201388090ebe85e423bc383fdd4780d8fa866e08",
+      "bytes": 756180,
+      "width": 896,
+      "height": 1200
+    },
+    {
+      "file": "figure-02-system-architecture.jpeg",
+      "source_zip_entry": "word/media/image6.jpeg",
+      "figure_number": 2,
+      "chapter": "Methods; overall architecture: fat-node DAG and eight-stage loop",
+      "original_caption": "Alex-Fin架构图",
+      "sha256": "bf8f1d566237c64b05c72c500ef560cde1d089e25bd6287d0f7a72016fdbd221",
+      "bytes": 695814,
+      "width": 1200,
+      "height": 896
+    },
+    {
+      "file": "figure-03-dag-aware-generation.png",
+      "source_zip_entry": "word/media/image7.png",
+      "figure_number": 3,
+      "chapter": "Methods; DAG-aware factor generator",
+      "original_caption": "全局感知因子挖掘架构图",
+      "sha256": "ec3c6e9ead8ff88bc252772a9f49b63bd24a5031b41f1ad2239db212efdde001",
+      "bytes": 153026,
+      "width": 771,
+      "height": 486
+    }
+  ]
+}

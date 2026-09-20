@@ -2,28 +2,24 @@
 
 **A research workspace for turning financial questions into traceable factor experiments.**
 
-[中文](README_zh.md) · [Start here](docs/en/learning-path.md) · [Run locally](docs/en/run-guide.md) · [Contribute](CONTRIBUTING.md)
+[中文](README_zh.md) · [Start here](docs/en/learning-path.md) · [Full manuscript](https://github.com/Soros2040/julius-future/blob/main/works/benjamin-agent/manuscript.md) · [Contribute](CONTRIBUTING.md)
 
 BenjaminAgent connects a streaming research interface, a LangGraph agent runtime, Qlib evaluation, and experimental factor knowledge management. It builds on [DeerFlow](https://github.com/bytedance/deer-flow) and [Qlib](https://github.com/microsoft/qlib). The current training path uses **LightGBM**. The project is an implementation under validation, with source-based tutorials and a concrete verification backlog.
 
 ## Architecture at a glance
 
-```mermaid
-flowchart TB
-    U[Financial research task] --> A[Chat workspace and agent runtime]
-    A --> T[Quantitative tools]
-    T --> Q[Qlib training and evaluation]
-    T --> M[Factor memory and research scheduling]
-```
+![Original manuscript Figure 2: Alex-Fin architecture](docs/assets/manuscript/figure-02-system-architecture.jpeg)
 
-These are the available components and their data relationships. The [implementation status](docs/en/status.md) identifies the lifecycle stages that still need end-to-end orchestration.
+*Original manuscript Figure 2, “Alex-Fin架构图,” extracted unchanged. Alex-Fin is the historical research name. This method diagram uses an eight-dimensional scheduling state; the current BenjaminAgent implementation uses nine fields. Read the [architecture guide](docs/en/architecture.md) for the source mapping and [image provenance](docs/assets/manuscript/README.md) for the original-file record.*
+
+The [complete manuscript and PDF](https://github.com/Soros2040/julius-future/tree/main/works/benjamin-agent/) provide the research narrative, equations, tables, and appendices. The tutorials connect that narrative to current source code. The [implementation status](docs/en/status.md) identifies lifecycle stages that still need end-to-end orchestration.
 
 ## What you can learn and do
 
 - Trace a request from the chat interface to a configured tool and a Qlib experiment.
 - Separate factor quality, predictive quality, and portfolio outcomes using explicit definitions.
 - Inspect how factor ancestry, retrieval, admission, and scheduling interact.
-- Contribute a small reproduction, a data-contract test, or a documented implementation review.
+- Contribute a source review, a hand derivation, a figure-caption check, or a bilingual documentation improvement.
 
 The tutorials use small hand-worked examples. Any illustrative numbers are teaching examples; measured research results require the evidence listed in the [status ledger](docs/en/status.md).
 
@@ -31,10 +27,10 @@ The tutorials use small hand-worked examples. Any illustrative numbers are teach
 
 | Track | Existing material | Next deliverable | Current status |
 |---|---|---|---|
-| Learn the system | [Architecture](docs/en/architecture.md), [learning path](docs/en/learning-path.md) | Trace one complete request with a saved tool event | Source walkthrough available |
-| Evaluate a baseline | [Case 1: task to backtest](docs/en/case-01-task-to-backtest.md) and Qlib pipeline | Reproducible LightGBM run with a fixed data window | Code present; integrated run pending |
-| Study factor evolution | [Case 2: factor lifecycle](docs/en/case-02-factor-lifecycle.md) | Measured factor-vector diversity and lifecycle tests | Experimental components present |
-| Reproduce and maintain | [Run guide](docs/en/run-guide.md), [roadmap](docs/en/roadmap.md) | Versioned environment and evidence bundle | Local validation in progress |
+| Learn the system | [Architecture](docs/en/architecture.md), [learning path](docs/en/learning-path.md) | A source map from one request to its configured tool | Source walkthrough available |
+| Understand evaluation | [Case 1: task to backtest](docs/en/case-01-task-to-backtest.md) and Qlib pipeline | Review label horizon, costs, and metric definitions against the manuscript | Code present; integrated run pending |
+| Study factor evolution | [Case 2: factor lifecycle](docs/en/case-02-factor-lifecycle.md) | Check a retrieval or scheduling calculation by hand | Experimental components present |
+| Preserve research evidence | [Sources](docs/en/sources.md), [roadmap](docs/en/roadmap.md), [maintenance](docs/maintenance.md) | Review a manuscript table, original figure, or matched translation | Documentation review open |
 
 ## Two practical cases
 
@@ -45,17 +41,17 @@ The tutorials use small hand-worked examples. Any illustrative numbers are teach
 ## First contribution
 
 1. Read either case and choose one claim with a source link.
-2. Record the symbol, input, output, and a minimal example.
-3. Compare the example with the current implementation; include expected and observed behavior.
-4. Open an Issue, agree on scope, and submit a focused PR with its evidence record.
+2. Open the linked source and the relevant manuscript passage; record the symbol or section, input, output, and assumptions.
+3. Work through a small example by hand or compare a figure/table with its caption. State whether each claim is a design statement, a source-code finding, or a reported manuscript result.
+4. Open an Issue, claim the bounded task, and submit a focused PR with a [contribution record](contributions/README.md). Update the English and Chinese pages together when their content overlaps.
 
 | Starter task | Suggested location | Acceptance evidence | Claim status |
 |---|---|---|---|
-| Check the IC and return definitions | `docs/en/case-01-task-to-backtest.md` and Chinese counterpart | A worked example plus exact function references | Open |
-| Reproduce DAG serialization | `backend/tests/` | Round-trip test covering ancestry and metric fields | Open |
-| Explain a retrieval score | `docs/en/case-02-factor-lifecycle.md` and Chinese counterpart | Hand calculation checked against a no-network fixture | Open |
+| Check the IC and return definitions | Case 1 and its Chinese counterpart | A hand calculation, exact function references, and the manuscript formula | Open |
+| Review an original figure or result table | [Sources](docs/en/sources.md) and [figure guide](docs/assets/manuscript/README.md) | Figure/table number, source location, and a caption consistent with its historical context | Open |
+| Explain a retrieval or scheduling calculation | Case 2 and its Chinese counterpart | Inputs, every arithmetic step, source symbol, and matched bilingual explanation | Open |
 
-Use the [contribution guide](CONTRIBUTING.md) for the evidence template and review process. Start with a small bounded task; training data and external model credentials are only needed for the corresponding execution paths.
+These first tasks require reading and reasoning. The [contribution guide](CONTRIBUTING.md) explains review and attribution; the [run guide](docs/en/run-guide.md) remains a separate reference for a future, explicitly scoped execution task.
 
 ## Repository map
 
@@ -78,4 +74,4 @@ The baseline pipeline has model training, prediction, IC evaluation, and portfol
 
 ## People, maintenance, and licenses
 
-See [roles](docs/en/roles.md), [roadmap](docs/en/roadmap.md), and [third-party notices](THIRD_PARTY_NOTICES.md). Upstream and original code retain the applicable [MIT license](LICENSE). Original project documentation is licensed under [CC BY-NC-SA 4.0](LICENSE-DOCS); third-party documentation retains its own terms. Datawhale-style learning organization informs the tutorials; project participation or endorsement is recorded only when confirmed.
+Julius maintains the research direction, reviews tasks, and coordinates releases. See [roles](docs/en/roles.md), [maintenance and handoff](docs/maintenance.md), [roadmap](docs/en/roadmap.md), and [third-party notices](THIRD_PARTY_NOTICES.md). Upstream and original code retain the applicable [MIT license](LICENSE). Original project documentation is licensed under [CC BY-NC-SA 4.0](LICENSE-DOCS); third-party documentation retains its own terms. Datawhale-style learning organization informs the tutorials; project participation or endorsement is recorded only when confirmed.

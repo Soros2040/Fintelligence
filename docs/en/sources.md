@@ -17,7 +17,19 @@ The source inventory and recovery backup retain the original working snapshot, i
 
 An earlier project manuscript uses the name **Alex-Fin** and describes a factor-DAG, retrieval, formula/code generation, and Bandit research design. **BenjaminAgent** is the presentation name used here; `Fintelligence` remains the directory/repository lineage name.
 
-The manuscript is design context. Its reported performance requires reconciliation with current code, model choice, label horizon, cost definitions, logs, and dataset versions before it can become a current result claim. This documentation maps design ideas to concrete source modules and marks implementation gaps in the [status ledger](status.md). Private manuscript metadata and full manuscript material remain outside this package.
+Read the [complete manuscript](https://github.com/Soros2040/julius-future/blob/main/works/benjamin-agent/manuscript.md) or [PDF](https://github.com/Soros2040/julius-future/blob/main/works/benjamin-agent/manuscript.pdf) for the research narrative, equations, result tables, and appendices. The [work entry](https://github.com/Soros2040/julius-future/tree/main/works/benjamin-agent/) keeps the manuscript alongside its publication context. The [original figure guide](../assets/manuscript/README.md) and [hash manifest](../assets/manuscript/provenance.json) identify the three method images used in this repository.
+
+Use three evidence categories while reading. A manuscript passage establishes what the author proposed or reported. A source-code inspection establishes what a particular implementation expresses. A saved execution bundle establishes what ran under a particular environment and configuration. The tutorials connect the first two categories; historical performance values retain their manuscript attribution until data, logs, costs, and configurations can support a current result claim.
+
+| Question to reconcile | Manuscript evidence | Current source reading |
+|---|---|---|
+| Scheduling state | Eight dimensions through Sharpe | Nine fields, adding Calmar and changing weights |
+| Label and portfolio protocol | Main §4.1 and appendix describe different horizons and selection rules | Inspect configured Qlib handler, label, top-k/drop, split, and costs |
+| Annualization and drawdown | Appendix uses compound ARR; MDD equation is a positive loss magnitude | Pipeline uses `252 × mean(return)` and a negative drawdown |
+| Reported result attribution | Main Table 3 and §4.2 prose assign the strongest row differently | Preserve the table's attribution and record the unresolved prose mismatch |
+| Knowledge persistence | Fat node and centralized research memory | Serialized IC-family node fields plus a separate model-experiment log |
+
+[Case 1](case-01-task-to-backtest.md) works through evaluation definitions and the result-table example. [Case 2](case-02-factor-lifecycle.md) covers retrieval, admission, state construction, and posterior-update arithmetic. The [status ledger](status.md) records implementation gaps. A source review should retain exact section/table references and identify which configuration a number belongs to.
 
 ## Learning organization
 

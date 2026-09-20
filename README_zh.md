@@ -2,28 +2,24 @@
 
 **把金融研究问题变成可追溯因子实验的研究工作台。**
 
-[English](README.md) · [从这里开始](docs/zh/learning-path.md) · [本地运行](docs/zh/run-guide.md) · [参与贡献](CONTRIBUTING.zh-CN.md)
+[English](README.md) · [从这里开始](docs/zh/learning-path.md) · [完整文稿](https://github.com/Soros2040/julius-future/blob/main/works/benjamin-agent/manuscript.md) · [参与贡献](CONTRIBUTING.zh-CN.md)
 
 BenjaminAgent 将流式研究界面、LangGraph 智能体运行时、Qlib 评估与实验性的因子知识管理连接起来，基于 [DeerFlow](https://github.com/bytedance/deer-flow) 和 [Qlib](https://github.com/microsoft/qlib) 构建。当前训练路径使用 **LightGBM**。项目处于实现与验证阶段，提供对应真实源码的教程和明确的验证任务。
 
 ## 架构概览
 
-```mermaid
-flowchart TB
-    U[金融研究任务] --> A[对话工作台与智能体运行时]
-    A --> T[量化工具]
-    T --> Q[Qlib 训练与评价]
-    T --> M[因子记忆与研究调度]
-```
+![原稿图 2：Alex-Fin 架构图](docs/assets/manuscript/figure-02-system-architecture.jpeg)
 
-图示为现有组件与数据关系，[实现状态](docs/zh/status.md)列出仍需贯通编排的生命周期阶段。
+*原稿图 2「Alex-Fin架构图」，按原始文件提取。Alex-Fin 是历史研究名称；图中方法采用八维调度状态，当前 BenjaminAgent 实现采用九个字段。源码映射见[架构指南](docs/zh/architecture.md)，原始文件记录见[图片来源](docs/assets/manuscript/README.md)。*
+
+[完整文稿与 PDF](https://github.com/Soros2040/julius-future/tree/main/works/benjamin-agent/)提供研究叙述、公式、表格和附录。教程将这些内容与当前源码联系起来；[实现状态](docs/zh/status.md)列出仍需贯通编排的生命周期阶段。
 
 ## 你可以学到什么、完成什么
 
 - 从聊天界面追踪一次请求，直到工具调用和 Qlib 实验。
 - 用清晰定义区分因子质量、预测质量与组合表现。
 - 理解因子血缘、检索、准入与调度之间的关系。
-- 提交一个小型复现、数据契约测试或有依据的实现审阅。
+- 提交源码审阅、手算推导、原图说明复核或双语文档改进。
 
 教程使用可以手算的小例子。示例数字用于讲解；研究结果需要附上[状态清单](docs/zh/status.md)中规定的证据。
 
@@ -31,10 +27,10 @@ flowchart TB
 
 | 主线 | 现有材料 | 下一项交付 | 实际状态 |
 |---|---|---|---|
-| 理解系统 | [架构](docs/zh/architecture.md)、[学习路径](docs/zh/learning-path.md) | 一次完整请求及保存的工具事件 | 已有源码导读 |
-| 评估基线 | [案例一：任务到回测](docs/zh/case-01-task-to-backtest.md)及 Qlib 管道 | 固定数据区间、可复现的 LightGBM 实验 | 已有代码，待集成运行验证 |
-| 研究因子演化 | [案例二：因子生命周期](docs/zh/case-02-factor-lifecycle.md) | 基于实际因子向量的多样性指标及生命周期测试 | 已有实验组件 |
-| 复现与维护 | [运行指南](docs/zh/run-guide.md)、[路线图](docs/zh/roadmap.md) | 版本化环境与实验凭据包 | 正在完善本地验证 |
+| 理解系统 | [架构](docs/zh/architecture.md)、[学习路径](docs/zh/learning-path.md) | 从一次请求到配置工具的源码映射 | 已有源码导读 |
+| 理解评估 | [案例一：任务到回测](docs/zh/case-01-task-to-backtest.md)及 Qlib 管道 | 对照文稿复核标签周期、成本与指标定义 | 已有代码，待集成运行验证 |
+| 研究因子演化 | [案例二：因子生命周期](docs/zh/case-02-factor-lifecycle.md) | 手算复核一次检索或调度 | 已有实验组件 |
+| 保存研究证据 | [来源](docs/zh/sources.md)、[路线图](docs/zh/roadmap.md)、[维护说明](docs/maintenance.zh-CN.md) | 复核一张文稿表格、原图或对应翻译 | 文档审阅开放认领 |
 
 ## 两个贯通案例
 
@@ -45,17 +41,17 @@ flowchart TB
 ## 第一次贡献
 
 1. 阅读一个案例，选择一条附有源码链接的表述。
-2. 记录符号、输入、输出，以及一个最小例子。
-3. 将例子与实现对照，写出预期行为和实际行为。
-4. 创建 Issue，确认任务范围，再提交附有证据记录的聚焦 PR。
+2. 打开链接源码及对应文稿段落，记录符号或章节、输入、输出与前提。
+3. 手算一个小例子，或对照原图/表格与说明。区分设计表述、源码发现和文稿报告的结果。
+4. 创建 Issue 并认领明确范围，使用[贡献记录](contributions/README.md)提交聚焦 PR；中英文内容对应的页面同步更新。
 
 | 入门任务 | 建议位置 | 验收证据 | 认领状态 |
 |---|---|---|---|
-| 复核 IC 与收益定义 | `docs/zh/case-01-task-to-backtest.md`及英文对应页 | 手算例子与精确函数引用 | 待认领 |
-| 复现 DAG 序列化 | `backend/tests/` | 覆盖父子关系和指标字段的往返测试 | 待认领 |
-| 解释一次检索得分 | `docs/zh/case-02-factor-lifecycle.md`及英文对应页 | 与无网络小样本一致的手算过程 | 待认领 |
+| 复核 IC 与收益定义 | 案例一及英文对应页 | 手算过程、精确函数引用与文稿公式 | 待认领 |
+| 复核一张原图或结果表 | [来源页](docs/zh/sources.md)与[原图指南](docs/assets/manuscript/README.md) | 图表编号、原文位置、符合历史背景的说明 | 待认领 |
+| 解释一次检索或调度计算 | 案例二及英文对应页 | 输入、逐步算式、源码符号和对应双语解释 | 待认领 |
 
-[贡献指南](CONTRIBUTING.zh-CN.md)提供证据记录模板与审阅流程。先选择范围明确的小任务；只有相应执行路径需要训练数据或外部模型凭据。
+这些入门任务通过阅读与推理即可完成。[贡献指南](CONTRIBUTING.zh-CN.md)说明审阅与署名流程；[运行指南](docs/zh/run-guide.md)单独作为后续明确范围的执行任务参考。
 
 ## 目录结构
 
@@ -78,4 +74,4 @@ docs/en/ 与 docs/zh/             对应的中英文教程和项目文档
 
 ## 分工、维护与许可
 
-参见[角色分工](docs/zh/roles.md)、[路线图](docs/zh/roadmap.md)和[第三方声明](THIRD_PARTY_NOTICES.md)。上游代码和原创代码适用相应的 [MIT 许可](LICENSE)。原创项目文档采用 [CC BY-NC-SA 4.0](LICENSE-DOCS)，第三方文档保持其原有条款。教程借鉴 Datawhale 项目的学习组织方式；组织参与或背书以已确认信息为准。
+Julius 维护研究方向、审阅任务并协调发布。参见[角色分工](docs/zh/roles.md)、[维护与交接](docs/maintenance.zh-CN.md)、[路线图](docs/zh/roadmap.md)和[第三方声明](THIRD_PARTY_NOTICES.md)。上游代码和原创代码适用相应的 [MIT 许可](LICENSE)。原创项目文档采用 [CC BY-NC-SA 4.0](LICENSE-DOCS)，第三方文档保持其原有条款。教程借鉴 Datawhale 项目的学习组织方式；组织参与或背书以已确认信息为准。
