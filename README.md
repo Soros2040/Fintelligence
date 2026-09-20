@@ -9,19 +9,11 @@ BenjaminAgent connects a streaming research interface, a LangGraph agent runtime
 ## Architecture at a glance
 
 ```mermaid
-flowchart TD
-    U[Research question] --> UI[Next.js chat workspace]
-    UI --> S[LangGraph stream client]
-    S --> A[lead_agent and configured tools]
-    UI --> G[FastAPI gateway: files and metadata]
-    A --> Q[quant_session and quantitative tools]
-    Q --> P[Qlib dataset and LightGBM]
-    P --> M[Predictions, IC, portfolio report]
-    Q --> D[Factor DAG and model experiment log]
-    D --> R[Retrieval and admission]
-    R --> B[Bandit scheduling]
-    M --> Q
-    Q --> UI
+flowchart TB
+    U[Financial research task] --> A[Chat workspace and agent runtime]
+    A --> T[Quantitative tools]
+    T --> Q[Qlib training and evaluation]
+    T --> M[Factor memory and research scheduling]
 ```
 
 These are the available components and their data relationships. The [implementation status](docs/en/status.md) identifies the lifecycle stages that still need end-to-end orchestration.

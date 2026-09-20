@@ -9,19 +9,11 @@ BenjaminAgent 将流式研究界面、LangGraph 智能体运行时、Qlib 评估
 ## 架构概览
 
 ```mermaid
-flowchart TD
-    U[研究问题] --> UI[Next.js 聊天工作台]
-    UI --> S[LangGraph 流客户端]
-    S --> A[lead_agent 与配置工具]
-    UI --> G[FastAPI 网关：文件与元数据]
-    A --> Q[quant_session 与量化工具]
-    Q --> P[Qlib 数据集与 LightGBM]
-    P --> M[预测、IC、组合报告]
-    Q --> D[因子 DAG 与模型实验日志]
-    D --> R[检索与准入]
-    R --> B[Bandit 调度]
-    M --> Q
-    Q --> UI
+flowchart TB
+    U[金融研究任务] --> A[对话工作台与智能体运行时]
+    A --> T[量化工具]
+    T --> Q[Qlib 训练与评价]
+    T --> M[因子记忆与研究调度]
 ```
 
 图示为现有组件与数据关系，[实现状态](docs/zh/status.md)列出仍需贯通编排的生命周期阶段。
