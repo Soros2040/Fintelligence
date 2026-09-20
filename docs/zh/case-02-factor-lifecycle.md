@@ -18,7 +18,9 @@
 
 假设“近期价格动量包含对某个明确未来收益的预测信息”，可先构造：
 
-$$f_{i,t}=P_{i,t}/P_{i,t-5}-1.$$
+```math
+f_{i,t}=P_{i,t}/P_{i,t-5}-1.
+```
 
 如果今天收盘为 105、五个观测日前为 100，特征就是 `0.05`。Qlib 风格表达式为 `$close / Ref($close, 5) - 1`。使用前要明确今天的收盘价何时可知、何时可以成交。标签属于更晚的区间，不能进入特征构造。
 
@@ -59,8 +61,12 @@ $$f_{i,t}=P_{i,t}/P_{i,t-5}-1.$$
 
 [BayesianFactorRetriever](../../backend/packages/harness/deerflow/tools/builtins/quant/retrieval/bayesian_retriever.py) 从活跃候选中选择，将 ICIR 导出的质量项与池质量项结合。其质量因子可以概括为：
 
-$$q_i=\sigma(z(|ICIR_i|))\,0.95^{depth_i}\,0.9^{\max(selected_i-2,0)},$$
-$$score_i=clip(q_i\,pool_i).$$
+```math
+q_i=\sigma(z(|ICIR_i|))\,0.95^{depth_i}\,0.9^{\max(selected_i-2,0)},
+```
+```math
+score_i=clip(q_i\,pool_i).
+```
 
 `z` 在候选间标准化，`σ` 是 logistic 函数。实现还归一化池得分，可分别为叶子与非叶子保留名额，并增加被检索节点的选择次数。候选不足时直接返回已有节点。
 
@@ -86,7 +92,9 @@ $$score_i=clip(q_i\,pool_i).$$
 
 [BanditScheduler](../../backend/packages/harness/deerflow/tools/builtins/quant/bandit/scheduler.py) 通过采样线性得分，在 `factor` 和 `model` 两个动作之间选择。当前状态有**九个维度**：
 
-$$x=[IC,ICIR,RankIC,RankICIR,ARR,IR,-MDD,Sharpe,Calmar].$$
+```math
+x=[IC,ICIR,RankIC,RankICIR,ARR,IR,-MDD,Sharpe,Calmar].
+```
 
 奖励函数为 `r = wᵀx`，权重为 `[.10,.10,.05,.05,.25,.15,.10,.15,.05]`。每个动作根据已存均值和精度矩阵逆采样系数，再比较与状态的点积。全零状态下两个得分都为零，由插入顺序选择 `factor`。
 
@@ -96,7 +104,9 @@ $$x=[IC,ICIR,RankIC,RankICIR,ARR,IR,-MDD,Sharpe,Calmar].$$
 
 标准贝叶斯线性更新通常写作：
 
-$$P'=P+xx^T/\sigma^2,\qquad \mu'=(P')^{-1}(P\mu+xr/\sigma^2).$$
+```math
+P'=P+xx^T/\sigma^2,\qquad \mu'=(P')^{-1}(P\mu+xr/\sigma^2).
+```
 
 当前 `record` 在等式右侧使用更新后的精度矩阵。用非零先验均值进行第二次更新，可以暴露差异；零均值出发的第一次更新可能掩盖问题。本教程记录差异，保留研究算法供后续审阅。
 

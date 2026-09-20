@@ -18,7 +18,9 @@ The lifecycle is easier to understand as one evidence path. A hypothesis becomes
 
 Suppose the hypothesis is: “Recent price momentum contains information about a specified future return.” A simple candidate is
 
-$$f_{i,t}=P_{i,t}/P_{i,t-5}-1.$$
+```math
+f_{i,t}=P_{i,t}/P_{i,t-5}-1.
+```
 
 If today's close is 105 and the close five observations ago is 100, the feature is `0.05`. A Qlib-style representation is `$close / Ref($close, 5) - 1`. Decide when the close is observable and when a trade can occur before using it. The label belongs to a later interval and must never enter feature construction.
 
@@ -59,8 +61,12 @@ Two details matter for interpretation. `get_sota` returns the latest node marked
 
 [BayesianFactorRetriever](../../backend/packages/harness/deerflow/tools/builtins/quant/retrieval/bayesian_retriever.py) considers active candidates and combines an ICIR-derived quality term with a pool-quality term. A simplified view of the implemented quality factor is
 
-$$q_i=\sigma(z(|ICIR_i|))\,0.95^{depth_i}\,0.9^{\max(selected_i-2,0)},$$
-$$score_i=clip(q_i\,pool_i).$$
+```math
+q_i=\sigma(z(|ICIR_i|))\,0.95^{depth_i}\,0.9^{\max(selected_i-2,0)},
+```
+```math
+score_i=clip(q_i\,pool_i).
+```
 
 Here `z` standardizes values across candidates and `σ` is the logistic function. The implementation normalizes pool scores, optionally reserves separate quotas for leaves and non-leaves, and increments the selection counts of retrieved nodes. With too few candidates it returns the available nodes directly.
 
@@ -86,7 +92,9 @@ The manuscript's thresholds describe a different research configuration: its qua
 
 [BanditScheduler](../../backend/packages/harness/deerflow/tools/builtins/quant/bandit/scheduler.py) selects between `factor` and `model` using a sampled linear score. The implemented state has **nine** entries:
 
-$$x=[IC,ICIR,RankIC,RankICIR,ARR,IR,-MDD,Sharpe,Calmar].$$
+```math
+x=[IC,ICIR,RankIC,RankICIR,ARR,IR,-MDD,Sharpe,Calmar].
+```
 
 The reward helper is `r = wᵀx`, with weights `[.10,.10,.05,.05,.25,.15,.10,.15,.05]`. For each arm, the scheduler samples coefficients from its stored mean and inverse precision, then picks the arm with the larger dot product. At an all-zero state both scores are zero, so insertion order resolves the tie to `factor`.
 
@@ -96,7 +104,9 @@ The historical manuscript writes an eight-entry vector `[IC, ICIR, RankIC, RankI
 
 For a standard Bayesian linear update, one expects
 
-$$P'=P+xx^T/\sigma^2,\qquad \mu'=(P')^{-1}(P\mu+xr/\sigma^2).$$
+```math
+P'=P+xx^T/\sigma^2,\qquad \mu'=(P')^{-1}(P\mu+xr/\sigma^2).
+```
 
 The current `record` function uses the updated precision in its right-hand side. Compare a second update with a nonzero prior mean to expose the difference; a first update from a zero mean can hide it. This tutorial records the discrepancy without changing the research algorithm.
 

@@ -60,7 +60,9 @@ A static contribution can already identify the exact handler construction and co
 
 For each date, IC is the cross-sectional Pearson correlation between prediction scores and future labels:
 
-$$IC_t=\frac{\sum_i (p_{i,t}-\bar p_t)(y_{i,t}-\bar y_t)}{\sqrt{\sum_i(p_{i,t}-\bar p_t)^2\sum_i(y_{i,t}-\bar y_t)^2}}.$$
+```math
+IC_t=\frac{\sum_i (p_{i,t}-\bar p_t)(y_{i,t}-\bar y_t)}{\sqrt{\sum_i(p_{i,t}-\bar p_t)^2\sum_i(y_{i,t}-\bar y_t)^2}}.
+```
 
 Rank IC applies the same correlation to ranks. Mean IC summarizes the daily values. The pipeline computes ICIR as the mean daily IC divided by its standard deviation; check the code and sample length before comparing it with a separately annualized statistic.
 
@@ -76,8 +78,12 @@ This measures association on one date. Portfolio construction introduces turnove
 
 For daily report returns `r_t`, the current summary computes:
 
-$$ARR=252\,\bar r,\qquad IR=Sharpe=\sqrt{252}\,\bar r/s_r,$$
-$$V_t=\prod_{u\leq t}(1+r_u),\quad MDD=\min_t(V_t/\max_{u\leq t}V_u-1),\quad Calmar=ARR/|MDD|.$$
+```math
+ARR=252\,\bar r,\qquad IR=Sharpe=\sqrt{252}\,\bar r/s_r,
+```
+```math
+V_t=\prod_{u\leq t}(1+r_u),\quad MDD=\min_t(V_t/\max_{u\leq t}V_u-1),\quad Calmar=ARR/|MDD|.
+```
 
 The current fields `ir` and `sharpe` use the same return series and formula; `ir` is not an independently calculated benchmark-excess information ratio. The annualized return is arithmetic, not compound annual growth. Cost parameters are passed to Qlib's exchange, while these summaries use `report["return"]`; a net-of-cost performance claim requires inspection of the report's return and cost fields.
 

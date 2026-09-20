@@ -60,7 +60,9 @@
 
 每天的 IC 是预测分数与未来标签之间的截面 Pearson 相关系数：
 
-$$IC_t=\frac{\sum_i (p_{i,t}-\bar p_t)(y_{i,t}-\bar y_t)}{\sqrt{\sum_i(p_{i,t}-\bar p_t)^2\sum_i(y_{i,t}-\bar y_t)^2}}.$$
+```math
+IC_t=\frac{\sum_i (p_{i,t}-\bar p_t)(y_{i,t}-\bar y_t)}{\sqrt{\sum_i(p_{i,t}-\bar p_t)^2\sum_i(y_{i,t}-\bar y_t)^2}}.
+```
 
 Rank IC 对排名计算相关系数。平均 IC 汇总每日结果，当前 ICIR 是每日 IC 均值除以标准差。与另外年化的统计量比较前，应核对实现和样本长度。
 
@@ -76,8 +78,12 @@ Rank IC 对排名计算相关系数。平均 IC 汇总每日结果，当前 ICIR
 
 对报告中的每日收益 `r_t`，当前汇总计算：
 
-$$ARR=252\,\bar r,\qquad IR=Sharpe=\sqrt{252}\,\bar r/s_r,$$
-$$V_t=\prod_{u\leq t}(1+r_u),\quad MDD=\min_t(V_t/\max_{u\leq t}V_u-1),\quad Calmar=ARR/|MDD|.$$
+```math
+ARR=252\,\bar r,\qquad IR=Sharpe=\sqrt{252}\,\bar r/s_r,
+```
+```math
+V_t=\prod_{u\leq t}(1+r_u),\quad MDD=\min_t(V_t/\max_{u\leq t}V_u-1),\quad Calmar=ARR/|MDD|.
+```
 
 当前 `ir` 与 `sharpe` 使用相同收益序列和公式；`ir` 尚未独立按基准超额收益计算。年化收益使用算术年化。成本参数传入了 Qlib 交易环境，但汇总公式读取 `report["return"]`，若要声称结果已经扣费，需要核查报告中的收益和成本字段。
 
