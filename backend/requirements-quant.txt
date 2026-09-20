@@ -1,0 +1,7 @@
+# Versions observed in the source environment; install after uv sync.
+# The backend platform dependencies remain in pyproject.toml and uv.lock.
+pyqlib==0.9.7
+lightgbm==4.6.0
+numpy==1.26.4
+pandas==2.3.3
+pyarrow==23.0.1
